@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::get('/estudiantes',[StudentController::class,'index'])->name('list-students');
+Route::get('/estudiantes/{id}',[StudentController::class,'show'])->name('show-student');
+Route::post('/estudiantes',[StudentController::class,'store'])->name('add-student');
+Route::put('/estudiantes/{id}',[StudentController::class,'update'])->name('update-student');
+Route::delete('/estudiantes/{id}',[StudentController::class,'destroy'])->name('delete-student');
+
+// Route::apiResource('/estudiantes',StudentController::class);
